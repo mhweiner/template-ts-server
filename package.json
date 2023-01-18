@@ -1,0 +1,58 @@
+{
+  "name": "template-ts-server",
+  "version": "0.0.0-development",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json",
+    "package-lock.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhweiner/template-ts-server.git"
+  },
+  "scripts": {
+    "prepare": "rm -rf dist && lambdaconf && tsc --emitDeclarationOnly",
+    "test": "c8 hoare 'src/**/*.spec.ts' && c8 report -r text -r html",
+    "lint": "eslint ./ --ext .js,.ts",
+    "dev": "LOG=debug LOG_FORMAT=human LOG_VERBOSITY=terse ts-node src/index.ts",
+    "semantic-release": "semantic-release",
+    "start": "LOG=debug LOG_FORMAT=human LOG_VERBOSITY=terse NODE_ENV=production ts-node src/index.ts"
+  },
+  "scriptsComments": {
+    "prepare": "Run after a `npm i/ci`. This is run both during ci process and heroku build process. `tsc --emitDeclarationOnly` is for type declaration files to be packaged and used in front-end.",
+    "dev": "For local development. `npm run build` is not required, but if Conf has changed, you must run `npm i` first.",
+    "start": "Used by deployement"
+  },
+  "release": {
+    "analyzeCommits": "semantic-release-conventional-commits"
+  },
+  "homepage": "https://github.com/mhweiner/template-ts-server",
+  "dependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.15",
+    "@types/mustache": "^4.2.2",
+    "@types/node": "^18.11.18",
+    "@types/sinon": "^10.0.13",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "axios": "^1.2.3",
+    "c8": "^7.12.0",
+    "cjs-mock": "^1.0.0",
+    "cors": "^2.8.5",
+    "eslint": "^8.32.0",
+    "express": "^4.18.2",
+    "form-data": "^4.0.0",
+    "hoare": "^3.0.16",
+    "jsout": "^1.0.3",
+    "jsout-express": "^1.1.4",
+    "lambdaconf": "^2.0.4",
+    "mustache": "^4.2.0",
+    "semantic-release": "^20.0.2",
+    "semantic-release-conventional-commits": "^3.0.0",
+    "sinon": "^15.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  }
+}
